@@ -1,10 +1,9 @@
-import { nanoid } from 'nanoid'
 import css from './ContactsForm.module.css'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'redux/selectors';
 import { Notify } from 'notiflix';
-import { addContact } from 'redux/contactsSlice';
+import { addContact } from 'redux/operations';
 
 export const ContactsForm =()=> {
 
@@ -18,7 +17,7 @@ const dispatch = useDispatch();
 const handlerSubmit =(e) =>{
 	e.preventDefault();
 
-    const newContact = {name, phone, id: nanoid(5)};
+    const newContact = {name, phone};
 	const hasDuplicates = contacts.some(
 		cont => cont.name.toLowerCase().trim() === newContact.name.toLowerCase().trim()
 	  );
